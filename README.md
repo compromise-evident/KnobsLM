@@ -24,7 +24,6 @@ Give me time to make 2 more decisions and it's done.
 * Self-attention positions
 
 <br>
-<br>
 
 # What to prepare for in the cpp
 
