@@ -17,7 +17,7 @@ Configurable pocket language model of 1-500MB running on droids &amp; old laptop
 <br>
 <br>
 
-# Where's the cpp?
+# Where's the rest of the cpp?
 
 Give me time to make 2 more decisions and it's done.
 * Self-attention cycles
@@ -26,7 +26,7 @@ Give me time to make 2 more decisions and it's done.
 <br>
 <br>
 
-# What to prepare for
+# What to prepare for in the cpp
 
 ```text
 
