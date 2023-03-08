@@ -189,7 +189,7 @@ int main()
 		
 		//N2S: choose neuron index to be mod 1st, temp-save fire[] there upon firing, mod, fire from there.
 		
-		//Easy, consider it done when the remaining 2 decisions are made. Similar to pqML.
+		//Easy, consider it done when the remaining 2 decisions are made. Similar to my pqML.
 	}
 	
 	
