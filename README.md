@@ -23,10 +23,10 @@ Give me time to make 2 more decisions and it's done.
 * Self-attention cycles
 * Self-attention positions
 
-# Be prepared
+<br>
+<br>
 
-<br>
-<br>
+# Be prepared
 
 ```text
 
