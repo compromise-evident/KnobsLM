@@ -26,7 +26,7 @@ Give me time to make 2 more decisions and it's done.
 <br>
 <br>
 
-# Be prepared
+# What to prepare for
 
 ```text
 
