@@ -2,7 +2,7 @@
 /// Nikolay Valentinovich Repnitskiy - License: WTFPLv2+ (wtfpl.net)
 
 
-/*  Version 1.0.0  Uses 1 CPU & 500MB RAM.  Auto-detects model size; share/swap.
+/*  Version 1.0.0  Uses 1 CPU & up to 500MB RAM.
  ______________________________________________________________________________
 /                                                                              \
 |                   Create text file Training_data and fill                    |
@@ -77,13 +77,13 @@ int main()
 	\\\\\\\\\\\\\\\\\\                                        ////////////////*/
 	
 	//                                                                                                                     |
-	bool start_with_same_model_as_others       =   false; //DEFAULT = FALSE.                universal init if broken >     |
+	bool start_with_same_model_as_others        =   false; //DEFAULT = FALSE.               universal init if broken >     |
 	//                                                                                                                     |
-	long long length_of_response_in_characters =     160; //DEFAULT = 160.
+	long long length_of_response_in_characters  =     160; //DEFAULT = 160.
 	
-	const int size_of_model_to_be_created      = 1000000; //DEFAULT = 1,000,000.
-	//                                                    Set this to 1 and 500M
-	//                                                    in multiples of 1M.
+	const int model_size_to_train_and_chat_with = 1000000; //DEFAULT = 1000000.
+	//                                                     Set this to 1 - 500M
+	//                                                     in multiples of 1M.
 	
 	
 	/*////////////////                                          \\\\\\\\\\\\\\\\
@@ -120,10 +120,10 @@ int main()
 	//________________________________________________________Train_______________________________________________________/
 	if(user_option == 1)
 	{	//Checks if requested neuron count is out of bounds.
-		if((size_of_model_to_be_created <   1000000     )
-		|| (size_of_model_to_be_created > 500000000     )
-		|| (size_of_model_to_be_created %   1000000 != 0))
-		{	cout << "\nsize_of_model_to_be_created is out of bounds.";
+		if((model_size_to_train_and_chat_with <   1000000     )
+		|| (model_size_to_train_and_chat_with > 500000000     )
+		|| (model_size_to_train_and_chat_with %   1000000 != 0))
+		{	cout << "\nmodel_size_to_train_and_chat_with is out of bounds.";
 			return 0;
 		}
 		
@@ -139,7 +139,7 @@ int main()
 			if(start_with_same_model_as_others == false) {srand(time(0));} //Seed = Unix time.
 			else                                         {srand(     0 );} //Seed = predetermined.
 			
-			for(int a = 0; a < size_of_model_to_be_created; a++)
+			for(int a = 0; a < model_size_to_train_and_chat_with; a++)
 			{	int neuron = (rand() % 95);
 				out_stream << char(neuron + 32);
 			}
@@ -202,7 +202,7 @@ int main()
 		
 		//Easy, consider it done when the remaining 2 decisions are made. Similar to my pqML.
 		
-		static unsigned char model[size_of_model_to_be_created];
+		static unsigned char model[model_size_to_train_and_chat_with];
 	}
 	
 	
