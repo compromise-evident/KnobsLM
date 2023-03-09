@@ -108,13 +108,13 @@ int main()
 	\\\\\\\\\\\\\\\\\\                                        ////////////////*/
 	
 	//                                                                                                                     |
-	bool start_with_same_model_as_others       =   false; //DEFAULT = FALSE.                universal init if broken >     |
+	bool start_with_same_model_as_others        =   false; //DEFAULT = FALSE.               universal init if broken >     |
 	//                                                                                                                     |
-	long long length_of_response_in_characters =     160; //DEFAULT = 160.
+	long long length_of_response_in_characters  =     160; //DEFAULT = 160.
 	
-	const int size_of_model_to_be_created      = 1000000; //DEFAULT = 1,000,000.
-	//                                                    Set this to 1 and 500M
-	//                                                    in multiples of 1M.
+	const int model_size_to_train_and_chat_with = 1000000; //DEFAULT = 1000000.
+	//                                                     Set this to 1 - 500M
+	//                                                     in multiples of 1M.
 	
 	
 	/*////////////////                                          \\\\\\\\\\\\\\\\
