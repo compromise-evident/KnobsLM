@@ -77,11 +77,13 @@ int main()
 	\\\\\\\\\\\\\\\\\\                                        ////////////////*/
 	
 	//                                                                                                                     |
-	bool start_with_same_model_as_others = false;     //DEFAULT = FALSE.                    universal init if broken >     |
+	bool start_with_same_model_as_others       =   false; //DEFAULT = FALSE.                universal init if broken >     |
 	//                                                                                                                     |
-	long long length_of_response_in_characters = 160; //DEFAULT = 160.
+	long long length_of_response_in_characters =     160; //DEFAULT = 160.
 	
-	int create_model_of_neuron_count_in_millions = 1; //DEFAULT = 1. (1 - 500.)
+	const int size_of_model_to_be_created      = 1000000; //DEFAULT = 1,000,000.
+	//                                                    Set this to 1 and 500M
+	//                                                    in multiples of 1M.
 	
 	
 	/*////////////////                                          \\\\\\\\\\\\\\\\
@@ -118,8 +120,10 @@ int main()
 	//________________________________________________________Train_______________________________________________________/
 	if(user_option == 1)
 	{	//Checks if requested neuron count is out of bounds.
-		if((create_model_of_neuron_count_in_millions < 1) || (create_model_of_neuron_count_in_millions > 500))
-		{	cout << "\ncreate_model_of_neuron_count_in_millions is out of bounds.";
+		if((size_of_model_to_be_created <   1000000     )
+		|| (size_of_model_to_be_created > 500000000     )
+		|| (size_of_model_to_be_created %   1000000 != 0))
+		{	cout << "\nsize_of_model_to_be_created is out of bounds.";
 			return 0;
 		}
 		
@@ -131,15 +135,18 @@ int main()
 		
 		if(existence_of_file_Model == false)
 		{	out_stream.open("Model");
-			srand(time(0));
-			for(int a = 0; a < create_model_of_neuron_count_in_millions * 1000000; a++)
+			
+			if(start_with_same_model_as_others == false) {srand(time(0));} //Seed = Unix time.
+			else                                         {srand(     0 );} //Seed = predetermined.
+			
+			for(int a = 0; a < size_of_model_to_be_created; a++)
 			{	int neuron = (rand() % 95);
 				out_stream << char(neuron + 32);
 			}
 			out_stream.close();
 		}
 		
-		//Checks if model is between 1MB & 500MB in increments of 1MB, and is composed of 32 - 126.
+		//Checks if model is between 1MB & 500MB, is a multiple of 1M, and is composed of 32 - 126.
 		in_stream.open("Model");
 		long long model_byte_counter = 0;
 		char garbage_byte;
@@ -158,12 +165,12 @@ int main()
 		}
 		in_stream.close();
 		
-		if((model_byte_counter < 1000000)
-		|| (model_byte_counter > 500000000)
-		|| (model_byte_counter % 1000000 != 0))
+		if((model_byte_counter <   1000000     )
+		|| (model_byte_counter > 500000000     )
+		|| (model_byte_counter %   1000000 != 0))
 		{	cout << "\nModel is " << model_byte_counter << " Bytes,"
 			     << "\nbut should be between 1M and 500M"
-			     << "\ninclusive, and in increments of 1M."
+			     << "\ninclusive, and a multiple of 1M."
 			     << "\nRemove it to get a new one upon"
 			     << "\ntraining, or replace it.";
 			     
@@ -187,9 +194,15 @@ int main()
 		
 		if(training_data_byte_counter < 1000) {cout << "\nTraining_data must be at least 1,000 characters."; return 0;}
 		
+		
+		
+		
+		
 		//N2S: choose neuron index to be mod 1st, temp-save fire[] there upon firing, mod, fire from there.
 		
 		//Easy, consider it done when the remaining 2 decisions are made. Similar to my pqML.
+		
+		static unsigned char model[size_of_model_to_be_created];
 	}
 	
 	
