@@ -33,7 +33,7 @@ Give me time to make 2 more decisions and it's done.
 /// Nikolay Valentinovich Repnitskiy - License: WTFPLv2+ (wtfpl.net)
 
 
-/*  Version 1.0.0  Uses 1 CPU & 500MB RAM.  Auto-detects model size; share/swap.
+/*  Version 1.0.0  Uses 1 CPU & 500MB RAM.
  ______________________________________________________________________________
 /                                                                              \
 |                   Create text file Training_data and fill                    |
