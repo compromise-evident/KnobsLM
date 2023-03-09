@@ -2,7 +2,7 @@
 /// Nikolay Valentinovich Repnitskiy - License: WTFPLv2+ (wtfpl.net)
 
 
-/*  Version 1.0.0  Uses 1 CPU & up to 500MB RAM.
+/*  Version 1.0.0  Uses 1 CPU core & up to 500MB RAM.
  ______________________________________________________________________________
 /                                                                              \
 |                   Create text file Training_data and fill                    |
