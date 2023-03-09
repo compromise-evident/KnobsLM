@@ -108,11 +108,13 @@ int main()
 	\\\\\\\\\\\\\\\\\\                                        ////////////////*/
 	
 	//                                                                                                                     |
-	bool start_with_same_model_as_others = false;     //DEFAULT = FALSE.                    universal init if broken >     |
+	bool start_with_same_model_as_others       =   false; //DEFAULT = FALSE.                universal init if broken >     |
 	//                                                                                                                     |
-	long long length_of_response_in_characters = 160; //DEFAULT = 160.
+	long long length_of_response_in_characters =     160; //DEFAULT = 160.
 	
-	int create_model_of_neuron_count_in_millions = 1; //DEFAULT = 1. (1 - 500.)
+	const int size_of_model_to_be_created      = 1000000; //DEFAULT = 1,000,000.
+	//                                                    Set this to 1 and 500M
+	//                                                    in multiples of 1M.
 	
 	
 	/*////////////////                                          \\\\\\\\\\\\\\\\
