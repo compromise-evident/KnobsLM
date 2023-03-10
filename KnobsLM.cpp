@@ -179,11 +179,9 @@ int main()
 		
 		//Checks if requested model size is equal to detected size.
 		if(model_size_to_train_and_chat_with != model_byte_counter)
-		{	cout << "\nModel is  " << model_byte_counter << " Bytes, but model_size_to_train_and_chat_with"
-			     << "\nis set to " << model_size_to_train_and_chat_with << "."
-			     << "\nRemove the model to get a new one"
-			     << "\nupon training, replace it, or adjust"
-			     << "\nmodel_size_to_train_and_chat_with"
+		{	cout << "\nModel  is " << model_byte_counter << " Bytes, but model_size_to_train_and_chat_with"
+			     << "\nis set to " << model_size_to_train_and_chat_with << ". Remove the model to get a new one upon"
+			     << "\ntraining, replace it, or adjust model_size_to_train_and_chat_with"
 			     << "\nso that it matches your model size.";
 			
 			return 0;
