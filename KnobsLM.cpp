@@ -77,7 +77,7 @@ int main()
 	\\\\\\\\\\\\\\\\\\                                        ////////////////*/
 	
 	//                                                                                                                     |
-	bool start_with_same_model_as_others        =   false; //DEFAULT = FALSE.               universal init if broken >     |
+	bool      start_with_same_model_as_others   =   false; //DEFAULT = FALSE.               universal init if broken >     |
 	//                                                                                                                     |
 	long long length_of_response_in_characters  =     160; //DEFAULT = 160.
 	
@@ -203,7 +203,20 @@ int main()
 		
 		if(training_data_byte_counter < 1000) {cout << "\nTraining_data must be at least 1,000 characters."; return 0;}
 		
-		
+		//Checks if Training_data is composed of 9, 10, 13, and 32 - 126.
+		in_stream.open("Training_data");
+		in_stream.get(garbage_byte);
+		for(; in_stream.eof() == false;)
+		{	if((garbage_byte <  32)
+			|| (garbage_byte > 126))
+			{	if((garbage_byte !=  9)
+				&& (garbage_byte != 10)
+				&& (garbage_byte != 13)) {cout << "\nTraining_data must be composed of 9, 10, 13, and 32 - 126."; return 0;}
+			}
+			
+			in_stream.get(garbage_byte);
+		}
+		in_stream.close();
 		
 		
 		
