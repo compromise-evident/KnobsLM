@@ -9,7 +9,7 @@ Configurable pocket language model of 1-500MB running on droids &amp; old laptop
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/compromise-evident/KnobsLM/main/Other/KnobsLM_terminal.png">
+  <img src="https://raw.githubusercontent.com/compromise-evident/KnobsLM/main/Other/KnobsLM_terminal_56e44f680dae96d96a3dc7c38272553b7787405c12b2982e1da240ca75f1fe83.png">
 </p>
 
 
