@@ -14,9 +14,6 @@ Configurable pocket language model of 1-500MB running on droids &amp; old laptop
 
 
 
-<br>
-<br>
-
 # Where's the rest of the cpp?
 
 Give me time to make 2 more decisions and it's done.
