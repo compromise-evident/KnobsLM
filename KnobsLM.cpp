@@ -222,7 +222,8 @@ int main()
 				{	cout << "\nTraining_data must be composed of 9, 10, 13, and 32 - 126"
 					     << "\n(that is tab, \\n, \\r, and the 95 printable characters.)";
 					
-					return 0;}
+					return 0;
+				}
 			}
 			
 			in_stream.get(garbage_byte);
