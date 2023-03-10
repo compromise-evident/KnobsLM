@@ -6,7 +6,7 @@
  ______________________________________________________________________________
 /                                                                              \
 |                   Create text file Training_data and fill                    |
-|                    it with any text. Now train & retrain.                    |
+|                 it with any text of 9, 10, 13, and 32 - 126.                 |
 |                                                                              |
 |              You may inject small amounts of new text anywhere               |
 |               over time, or replace Training_data completely.                |
@@ -188,7 +188,14 @@ int main()
 		
 		//Checks if training data is missing.
 		in_stream.open("Training_data");
-		if(in_stream.fail() == true) {cout << "\nMissing file \"Training_data\""; in_stream.close(); return 0;}
+		if(in_stream.fail() == true)
+		{	cout << "\nMissing file \"Training_data\". Create it"
+			     << "\nand fill it with any text that is the"
+			     << "\n95 printable characters, tab, \\r, \\n.";
+			
+			in_stream.close();
+			return 0;
+		}
 		in_stream.close();
 		
 		//Checks if training data is at least 1,000 characters.
@@ -211,7 +218,11 @@ int main()
 			|| (garbage_byte > 126))
 			{	if((garbage_byte !=  9)
 				&& (garbage_byte != 10)
-				&& (garbage_byte != 13)) {cout << "\nTraining_data must be composed of 9, 10, 13, and 32 - 126."; return 0;}
+				&& (garbage_byte != 13))
+				{	cout << "\nTraining_data must be composed of 9, 10, 13, and 32 - 126"
+					     << "\n(that is tab, \\n, \\r, and the 95 printable characters.)";
+					
+					return 0;}
 			}
 			
 			in_stream.get(garbage_byte);
