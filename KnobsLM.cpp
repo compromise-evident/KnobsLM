@@ -81,7 +81,7 @@ int main()
 	//                                                                                                                     |
 	long long length_of_response_in_characters  =     160; //DEFAULT = 160.
 	
-	const int model_size_to_train_and_chat_with = 1000000; //DEFAULT = 1000000.
+	const int model_size_to_train_and_chat_with = 2000000; //DEFAULT = 1000000.
 	//                                                     Set this to 1 - 500M
 	//                                                     in multiples of 1M.
 	
@@ -173,7 +173,19 @@ int main()
 			     << "\ninclusive, and a multiple of 1M."
 			     << "\nRemove it to get a new one upon"
 			     << "\ntraining, or replace it.";
-			     
+			
+			return 0;
+		}
+		
+		//Checks if requested model size is equal to detected size.
+		if(model_size_to_train_and_chat_with != model_byte_counter)
+		{	cout << "\nModel is  " << model_byte_counter << " Bytes, but model_size_to_train_and_chat_with"
+			     << "\nis set to " << model_size_to_train_and_chat_with << "."
+			     << "\nRemove the model to get a new one"
+			     << "\nupon training, replace it, or adjust"
+			     << "\nmodel_size_to_train_and_chat_with"
+			     << "\nso that it matches your model size.";
+			
 			return 0;
 		}
 		
