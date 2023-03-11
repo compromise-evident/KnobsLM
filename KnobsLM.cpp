@@ -284,7 +284,8 @@ int main()
 	//_____________________________________________________________________________________________________________________
 	//________________________________________________________Merge_______________________________________________________/
 	else if(user_option == 4)
-	{	//Easy, consider it done when option 1 is done. This feature can wait since users will only begin training.
+	{	//Merging is essentially Knobs in deep sleep (inactivity-based loss,)
+		//and a refresh with focus on what's important (activity-based gain.)
 	}
 	
 	else {cout << "\nInvalid option, program ended.\n"; return 0;}
