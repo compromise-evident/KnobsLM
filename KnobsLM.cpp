@@ -1,12 +1,13 @@
-/// KnobsLM - configurable pocket language model of 1-500MB running on droids & old laptops.
+/// KnobsLM - configurable pocket language model of 1M to 250B neurons.
 /// Nikolay Valentinovich Repnitskiy - License: WTFPLv2+ (wtfpl.net)
 
 
-/*  Version 1.0.0  Uses 1 CPU core & up to 500MB RAM, 1MB by default.
+/* Version 1.0.0   Uses 1 whole CPU core & up to 250GB RAM, 1MB by default. Runs
+on droids & old laptops.  Turn the 3 knobs below and adjust Knobs to your needs.
  ______________________________________________________________________________
 /                                                                              \
 |                   Create text file Training_data and fill                    |
-|                    it with any text of 9, 10, & 32 - 126.                 |
+|                    it with any text of 9, 10, & 32 - 126.                    |
 |                                                                              |
 |              You may inject small amounts of new text anywhere               |
 |               over time, or replace Training_data completely.                |
@@ -15,17 +16,17 @@
 
 
 * Generative character prediction model.  Output = standard 9, 10, and 32 - 126.
-* Creates unique model by default.  You may set  start_with_same_model_as_others
-  to true so that models of unique training can merge for learn-sharing. For ex:
-  if 2 of 3 models have some same value, that value is final in  "Merged_model".
+* Creates universal model by default.  This allows models of  unique training to
+  merge with minimal  catastrophic forgetting (safe learn-sharing.)  For example
+  if 5 of 9 models have some same value, that value is final in  "Merged_model".
 * No GPU usage; use fast CPU+RAM. Intel NUC is the fastest CPU-RAM communicator.
 * KnobsLM runs on just about any  low-spec  hardware because it's  CPU+RAM-only.
 * Mitigate catastrophic forgetting:  rehearsal--as recommended in the box above.
 * Training len : 1k characters.  Uses every contiguous 1k char in TD with reuse.
 * Output len   : adjustable.  Currently: length_of_response_in_characters = 160.
-* Max input len: 1k char from user (32-126.)
-* Neuron count : 1M to 500M (smaller = faster, bigger = waste. Choose wisely.)
-* Layer count  : 1k to 500k
+* Max input len: 500 char from user (32-126.)
+* Neuron count : 1M to 250B (smaller = faster, bigger = waste. Choose wisely.)
+* Layer count  : 1k to 250M (divide model_size_to_train_and_chat_with by 1,000.)
 * Neurons/layer: 1k
 * Neuron values: 95
 * Neuron's job : take hash of previous layer.
@@ -34,7 +35,6 @@
   example: trains on "Meow like a ca"  until that string is classified under "t"
   where "Meow like a cat"  is the full sentence of focus from the training data.
   Next string to train on is "Meow like a c"  until that's classified under "a".
-* Self-attention cycles: ******************
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 How to run the program  -  Software package repositories for GNU+Linux operating
 systems have all the tools you can imagine. Open a terminal and use this command
@@ -76,13 +76,14 @@ int main()
 	\\\\\\\\\\\\\\\\\\\\\\\                              ///////////////////////
 	\\\\\\\\\\\\\\\\\\                                        ////////////////*/
 	
-	//                                                                                                                     |
-	bool      start_with_same_model_as_others   =   false; //DEFAULT = FALSE.               universal init if broken >     |
-	//                                                                                                                     |
-	long long length_of_response_in_characters  =     160; //DEFAULT = 160.
 	
-	const int model_size_to_train_and_chat_with = 1000000; //DEFAULT = 1000000.
-	//                                                     Set this to 1M - 500M
+	//                                                                                                                  |
+	bool            start_with_same_model_as_others   = true; //DEFAULT = TRUE.             unique init if broken >     |
+	//                                                                                                                  |
+	long long       length_of_response_in_characters  = 160;  //DEFAULT = 160.
+	//
+	const long long model_size_to_train_and_chat_with = 1000000; //DEFAULT = 1M.
+	//                                                     Set this to 1M - 250B
 	//                                                     in multiples of 1M.
 	
 	
@@ -121,9 +122,9 @@ int main()
 	//________________________________________________________Train_______________________________________________________/
 	if(user_option == 1)
 	{	//Checks if requested neuron count is out of bounds.
-		if((model_size_to_train_and_chat_with <   1000000     )
-		|| (model_size_to_train_and_chat_with > 500000000     )
-		|| (model_size_to_train_and_chat_with %   1000000 != 0))
+		if((model_size_to_train_and_chat_with <      1000000     )
+		|| (model_size_to_train_and_chat_with > 250000000000     )
+		|| (model_size_to_train_and_chat_with %      1000000 != 0))
 		{	cout << "\nmodel_size_to_train_and_chat_with is out of bounds.";
 			return 0;
 		}
@@ -137,8 +138,8 @@ int main()
 		if(existence_of_file_Model == false)
 		{	out_stream.open("Model");
 			
-			if(start_with_same_model_as_others == false) {srand(time(0));} //Seed = Unix time.
-			else                                         {srand(     0 );} //Seed = predetermined.
+			if(start_with_same_model_as_others == true) {srand(     0 );} //Seed = predetermined.
+			else                                        {srand(time(0));} //Seed = Unix time.
 			
 			for(int a = 0; a < model_size_to_train_and_chat_with; a++)
 			{	int neuron = (rand() % 95);
@@ -147,7 +148,7 @@ int main()
 			out_stream.close();
 		}
 		
-		//Checks if model is between 1MB & 500MB, is a multiple of 1M, and is composed of 32 - 126.
+		//Checks if model size is between 1MB & 250BG, is a multiple of 1M, and is composed of 32 - 126.
 		in_stream.open("Model");
 		long long model_byte_counter = 0;
 		char garbage_byte;
@@ -167,11 +168,11 @@ int main()
 		}
 		in_stream.close();
 		
-		if((model_byte_counter <   1000000     )
-		|| (model_byte_counter > 500000000     )
-		|| (model_byte_counter %   1000000 != 0))
+		if((model_byte_counter <      1000000     )
+		|| (model_byte_counter > 250000000000     )
+		|| (model_byte_counter %      1000000 != 0))
 		{	cout << "\nModel is " << model_byte_counter << " Bytes,"
-			     << "\nbut should be between 1M and 500M"
+			     << "\nbut should be between 1M and 250B"
 			     << "\ninclusive, and a multiple of 1M."
 			     << "\nRemove it to get a new one upon"
 			     << "\ntraining, or replace it.";
@@ -250,9 +251,9 @@ int main()
 		}
 		in_stream.close();
 		
-		//N2S: choose neuron index to be mod 1st, temp-save fire[] there upon firing, mod, fire from there.
+		//n2s: choose neuron index to be mod 1st, temp-save fire[] there upon firing, mod, fire from there.
 		
-		//Easy, consider it done when the remaining 2 decisions are made. Similar to my pqML.
+		//Similar to my pqML.
 		
 		static unsigned char model[model_size_to_train_and_chat_with];
 	}
@@ -286,6 +287,8 @@ int main()
 	else if(user_option == 4)
 	{	//Merging is essentially Knobs in deep sleep (inactivity-based loss,)
 		//and a refresh with focus on what's important (activity-based gain.)
+		
+		//n2s: cout: priority on 1st model if no majority found. 1st model is 1st in file sorted alpha# as usual, read from ls > a.txt.
 	}
 	
 	else {cout << "\nInvalid option, program ended.\n"; return 0;}
