@@ -1,5 +1,5 @@
 <!--
-Configurable pocket language model of 1-500MB running on droids &amp; old laptops.
+Configurable pocket language model of 1M to 250B neurons.
 -->
 
 
@@ -16,6 +16,4 @@ Configurable pocket language model of 1-500MB running on droids &amp; old laptop
 
 # Where's the rest of the cpp?
 
-Give me time to make 2 more decisions and it's done.
-* Self-attention cycles
-* Self-attention positions
+It's a work in progress.
