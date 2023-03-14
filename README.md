@@ -5,7 +5,7 @@ Configurable pocket language model of 1M to 250B neurons.
 
 
 <p align="center">
-  <img src="https://github.com/compromise-evident/KnobsLM/blob/main/Other/KnobsLM_icon_4fb9fb7dd2e08b9c0376d9782ca0c195628a6e075eed0bf847bc15ba624e1308.png" width="205">
+  <img src="https://github.com/compromise-evident/KnobsLM/blob/main/Other/KnobsLM_icon_87c229637cb9b7f802e9aeb61c1a721b0b5b1a6fa7843fe8003cddae42dd31e3.png" width="205">
 </p>
 
 <p align="center">
