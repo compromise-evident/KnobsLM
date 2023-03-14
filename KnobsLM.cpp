@@ -251,11 +251,42 @@ int main()
 		}
 		in_stream.close();
 		
-		//n2s: choose neuron index to be mod 1st, temp-save fire[] there upon firing, mod, fire from there.
-		
-		//Similar to my pqML.
-		
+		//Loads model.
 		static unsigned char model[model_size_to_train_and_chat_with];
+		in_stream.open("Model");
+		for(long long a = 0; a < model_size_to_train_and_chat_with; a++)
+		{	in_stream.get(garbage_byte);
+			model[a] = (garbage_byte - 32);
+		}
+		in_stream.close();
+		
+		cout << "\nExit/continue at any time. Overwrites model periodically;\n"
+		     << "it's safest to exit right after an update. Backup models.\n\n";
+		
+		
+		
+		
+		
+		//Loops until all training data is consumed. # of loops = (TD Bytes - 1,000) + 1.
+		for(long long training_data_bytes_to_skip = 0;; training_data_bytes_to_skip++)
+		{	//..........Loads segment_of_training_data[] with 1,000 training data items, skipping n Bytes.
+			int segment_of_training_data[1000];
+			in_stream.open("Training_data");
+			for(long long a = 0; a < training_data_bytes_to_skip; a++) {in_stream.get(garbage_byte);}
+			for(int a = 0; a < 1000; a++)
+			{	in_stream.get(garbage_byte);
+				segment_of_training_data[a] = (garbage_byte - 32);
+			}
+			in_stream.close();
+			
+			if(in_stream.eof() == true) {cout << "\n\nDone.\n\n\n"; return 0;}
+			
+			//..........Trains on 998 strings per 1,000-character TD segment.
+			for(int a = 0; a < 998; a++)
+			{	//..........major here
+				
+			}
+		}
 	}
 	
 	
@@ -287,6 +318,7 @@ int main()
 	else if(user_option == 4)
 	{	//Merging is essentially Knobs in deep sleep (inactivity-based loss,)
 		//and a refresh with focus on what's important (activity-based gain.)
+		//This is true because the 1st model is used as a reference priority.
 		
 		//n2s: cout: priority on 1st model if no majority found. 1st model is 1st in file sorted alpha# as usual, read from ls > a.txt.
 	}
